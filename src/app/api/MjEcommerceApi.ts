@@ -207,6 +207,31 @@ const mjEcommerceApi = [
                         },
                     ]
                 }
+            },
+            {
+                httpMethod: "DELETE",
+                description: "Delete a user.",
+                path: "/api/users/{email}",
+                requestParams: {
+                    headers: [
+                        {
+                            name: "X-API-Key",
+                            type: "string",
+                            requirement: "required",
+                            description: "API key for authentication.",
+                        }
+                    ],
+                    query: [],
+                    path: [
+                        {
+                            name: "email",
+                            type: "string",
+                            requirement: "required",
+                            description: "User unique email address"
+                        }
+                    ],
+                    body: []
+                }
             }
         ]
     },
