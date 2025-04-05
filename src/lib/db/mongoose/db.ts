@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const dbconnect = async () => {
+const db = async () => {
     const uri = process.env.MONGODB_URI as string;
     const dbName = process.env.MONGODB_DATABASE as string;
 
@@ -12,6 +12,11 @@ const dbconnect = async () => {
         mongoose.connection.on('disconnecting', () => console.log('disconnecting'));
         mongoose.connection.on('close', () => console.log('close'));
 
+        if (mongoose.connection.readyState >= 1) {
+            console.log("readyState: ", mongoose.connection.readyState);
+            return;
+        }
+
         await mongoose.connect(uri, {
             dbName
         });
@@ -21,4 +26,4 @@ const dbconnect = async () => {
     }
 }
 
-export default dbconnect;
+export default db;
